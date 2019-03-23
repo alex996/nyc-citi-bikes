@@ -14,9 +14,8 @@ const StationList = ({ className, height, onSelect, rowHeight, stations, width }
   const data = { onMouseOver, stations }
 
   return (
-    <Box>
+    <Box className={className}>
       <List
-        className={className}
         height={height}
         itemCount={stations.length}
         itemData={data}

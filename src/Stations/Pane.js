@@ -12,10 +12,10 @@ const props = {
   lastCommunicationTime: 'Updated'
 }
 
-const StationPane = ({ className, height, station, width }) => (
-  <Box style={{ height, width }}>
+const StationPane = ({ className, station }) => (
+  <Box className={className}>
     {station && (
-      <ul className={className}>
+      <ul>
         {Object.entries(props).map(([prop, label]) => (
           <li key={prop}>
             <strong>{label}</strong> <span>{station[prop]}</span>
@@ -28,16 +28,12 @@ const StationPane = ({ className, height, station, width }) => (
 
 StationPane.propTypes = {
   className: PropTypes.string,
-  height: PropTypes.number,
-  station: PropTypes.shape(Station),
-  width: PropTypes.number
+  station: PropTypes.shape(Station)
 }
 
 StationPane.defaultProps = {
   className: 'station-pane',
-  height: 200,
-  station: null,
-  width: 400
+  station: null
 }
 
 export default StationPane

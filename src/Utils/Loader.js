@@ -1,8 +1,8 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-const Loader = ({ children, ...other }) => (
-  <h1 {...other}>{children}</h1>
+const Loader = props => (
+  <h1 {...props} /> // eslint-disable-line jsx-a11y/heading-has-content
 )
 
 Loader.propTypes = {

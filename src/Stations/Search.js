@@ -2,34 +2,28 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { Box } from '../Utils'
 
-const StationSearch = ({ className, height, onSearch, placeholder, query, width }) => {
+const StationSearch = ({ className, onSearch, placeholder, query }) => {
   const onChange = ({ target: { value } }) => onSearch(value)
 
   return (
-    <Box style={{ height, width }}>
-      <div className={className}>
-        <input value={query} onChange={onChange} placeholder={placeholder} />
-      </div>
+    <Box className={className}>
+      <input value={query} onChange={onChange} placeholder={placeholder} />
     </Box>
   )
 }
 
 StationSearch.propTypes = {
   className: PropTypes.string,
-  height: PropTypes.number,
   onSearch: PropTypes.func,
   placeholder: PropTypes.string,
-  query: PropTypes.string,
-  width: PropTypes.number
+  query: PropTypes.string
 }
 
 StationSearch.defaultProps = {
   className: 'station-search',
-  height: 50,
   onSearch: f => f,
   placeholder: 'Search...',
-  query: '',
-  width: 400
+  query: ''
 }
 
 export default StationSearch

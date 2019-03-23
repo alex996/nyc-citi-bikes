@@ -3,7 +3,7 @@
 $light-gray: #eaeaea;
 $dark-gray: rgba(0,0,0,.14);
 
-$font-family: 'Montserrat', serif;
+$font-family: 'Montserrat', Georgia, serif;
 
 html {
   font-family: $font-family;
@@ -11,26 +11,27 @@ html {
 
 body {
   margin: 0;
-}
-
-#root {
   height: 100vh;
   width: 100vw;
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
+}
+
+#root {
+  width: 400px;
 }
 
 .box {
   display: flex;
   border: 1px solid $light-gray;
   box-shadow: 0 2px 2px 0 $dark-gray, 0 3px 1px -2px $dark-gray, 0 1px 5px 0 $dark-gray;
-  margin: 0.5rem 0;
+  margin-bottom: 0.8rem;
 }
 
 .loader {
   color: $dark-gray;
+  text-align: center;
 }
 
 .station-list {
@@ -56,32 +57,33 @@ body {
 }
 
 .station-pane {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  margin: 0;
-  padding: 1rem;
+  min-height: 200px;
 
-  li {
+  ul {
+    flex: 1;
+    margin: 0;
+    padding: 1rem;
     display: flex;
+    flex-direction: column;
     justify-content: space-between;
 
-    strong {
-      font-weight: 500;
+    li {
+      display: flex;
+      justify-content: space-between;
+
+      strong {
+        font-weight: 500;
+      }
     }
   }
 }
 
 .station-search {
-  flex: 1;
-  display: flex;
-
   input {
     flex: 1;
     margin: 0.5rem;
     border-radius: 0.3rem;
-    padding: 0.3rem;
+    padding: 0.5rem;
     border: 1px solid $dark-gray;
     box-shadow: inset 0 1px 2px $dark-gray;
     font-size: 1rem;
