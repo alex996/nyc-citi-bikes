@@ -1,19 +1,14 @@
 import React, { useState, useEffect } from 'react'
 import debounce from 'lodash/debounce'
 import { StationList, StationPane, StationSearch } from './Stations'
+import {
+  apiUrl,
+  filterByStatus,
+  findById,
+  pollInterval,
+  searchByQuery
+} from './helpers'
 import { Loader } from './Utils'
-
-const pollInterval = 30 * 1000
-
-const apiUrl = '/api/stations/stations.json'
-
-const filterByStatus = ({ statusValue, testStation }) => statusValue === 'In Service' && !testStation
-
-const searchByQuery = (stations, query) => stations.filter(
-  station => station.stationName.toUpperCase().includes(query.toUpperCase()) // case-insensitive
-)
-
-const findById = (stations, id) => stations.find(station => station.id === +id)
 
 const App = props => {
   const [allStations, setAllStations] = useState([])
