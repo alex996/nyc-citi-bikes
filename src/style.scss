@@ -1,0 +1,49 @@
+@charset "utf-8";
+
+$light-gray: #eaeaea;
+$dark-gray: rgba(0,0,0,.14);
+
+html {
+  font-family: "Montserrat", serif;
+}
+
+body {
+  margin: 0;
+}
+
+#root {
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.loader {
+  color: $dark-gray;
+}
+
+.station-list {
+  border: 1px solid $light-gray;
+  box-shadow: 0 2px 2px 0 $dark-gray, 0 3px 1px -2px $dark-gray, 0 1px 5px 0 $dark-gray;
+
+  .station-row {
+    &:hover {
+      background-color: #eee;
+      cursor: pointer;
+    }
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid $light-gray;
+
+    span:first-child {
+      padding-left: 1rem;
+    }
+
+    span:last-child {
+      padding-right: 1rem;
+    }
+  }
+}

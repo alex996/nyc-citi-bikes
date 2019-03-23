@@ -8,28 +8,31 @@ export const Station = {
   totalDocks: PropTypes.number.isRequired
 }
 
-const StationRow = ({ index, style, data }) => {
+const StationRow = ({ className, index, style, data }) => {
   const { stationName, availableDocks, totalDocks } = data[index]
 
   return (
-    <div style={style}>
-      {stationName} ({(availableDocks / totalDocks * 100).toFixed(2)}%)
+    <div className={className} style={style}>
+      <span>{stationName}</span>
+      <span>{(availableDocks / totalDocks * 100).toFixed(2)}%</span>
     </div>
   )
 }
 
 StationRow.propTypes = {
-  index: PropTypes.number.isRequired,
-  style: PropTypes.object.isRequired,
+  className: PropTypes.string,
   data: PropTypes.arrayOf(
     PropTypes.shape(Station)
-  ).isRequired
+  ).isRequired,
+  index: PropTypes.number.isRequired,
+  style: PropTypes.object
 }
 
 StationRow.defaultProps = {
+  className: 'station-row',
+  data: [],
   index: 0,
-  style: {},
-  data: []
+  style: {}
 }
 
 export default StationRow

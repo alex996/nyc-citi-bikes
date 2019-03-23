@@ -3,15 +3,15 @@ import PropTypes from 'prop-types'
 import { FixedSizeList as List } from 'react-window'
 import StationRow, { Station } from './Row'
 
-const StationList = ({ stations }) => (
+const StationList = ({ className, height, rowHeight, stations, width }) => (
   <>
-    <h1>Citi Bike Stations</h1>
     <List
-      height={150}
+      className={className}
+      height={height}
       itemCount={stations.length}
-      itemSize={35}
-      width={300}
       itemData={stations}
+      itemSize={rowHeight}
+      width={width}
     >
       {StationRow}
     </List>
@@ -19,13 +19,21 @@ const StationList = ({ stations }) => (
 )
 
 StationList.propTypes = {
+  className: PropTypes.string,
+  height: PropTypes.number,
+  rowHeight: PropTypes.number,
   stations: PropTypes.arrayOf(
     PropTypes.shape(Station)
-  ).isRequired
+  ).isRequired,
+  width: PropTypes.number
 }
 
 StationList.defaultProps = {
-  stations: []
+  className: 'station-list',
+  height: 700,
+  rowHeight: 50,
+  stations: [],
+  width: 400
 }
 
 export default StationList

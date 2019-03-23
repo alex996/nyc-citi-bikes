@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { StationList } from './Stations'
+import Loader from './Loader'
 import data from '../data.json'
 
 const stationsFilter = ({ statusValue, testStation }) => statusValue === 'In Service' && !testStation
@@ -15,7 +16,7 @@ const App = props => {
   }, [])
 
   if (loading) {
-    return <h1>Loading...</h1>
+    return <Loader />
   }
 
   return (
