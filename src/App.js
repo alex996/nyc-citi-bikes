@@ -31,37 +31,36 @@ const App = props => {
     setStation(filtered[0])
   }
 
-  const onError = err => {
-    console.error(err)
-
-    import(/* webpackChunkName: "data" */ './data.json').then(data => {
-      const stations = data.stationBeanList.filter(stationsFilter)
-      setAllStations(stations)
-      setStations(stations)
-      setStation(stations[0])
-      setLoading(false)
-    })
-  }
-
-  useEffect(() => {
+  const fetchStations = () => {
     fetch(apiUrl)
       .then(res => {
         if (res.ok) {
           res.json()
-            .then(({ stationBeanList }) => {
-              const stations = stationBeanList.filter(stationsFilter)
-              setAllStations(stations)
-              setStations(stations)
-              setStation(stations[0])
-              setLoading(false)
-            })
+            .then(onFetch)
             .catch(onError)
         } else {
           onError(res)
         }
       })
       .catch(onError)
-  }, [])
+  }
+
+  const onFetch = data => {
+    const stations = data.stationBeanList.filter(stationsFilter)
+
+    setAllStations(stations)
+    setStations(stations)
+    setStation(stations[0])
+    setLoading(false)
+  }
+
+  const onError = err => {
+    console.error(err)
+
+    import(/* webpackChunkName: "data" */ './data.json').then(onFetch)
+  }
+
+  useEffect(fetchStations, [])
 
   if (loading) {
     return <Loader />
