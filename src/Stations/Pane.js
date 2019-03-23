@@ -5,26 +5,26 @@ import Station from './type'
 
 const StationPane = ({ className, height, station, width }) => (
   <Box style={{ height, width }}>
-    <ul className={className}>
+    {station && <ul className={className}>
       <li>
-        <strong>Name:</strong> <span>{station.stationName}</span>
+        <strong>Name</strong> <span>{station.stationName}</span>
       </li>
       <li>
-        <strong>Available:</strong> <span>{station.availableDocks}</span>
+        <strong>Available</strong> <span>{station.availableDocks}</span>
       </li>
       <li>
-        <strong>Total:</strong> <span>{station.totalDocks}</span>
+        <strong>Total</strong> <span>{station.totalDocks}</span>
       </li>
       <li>
-        <strong>Latitude:</strong> <span>{station.latitude}</span>
+        <strong>Latitude</strong> <span>{station.latitude}</span>
       </li>
       <li>
-        <strong>Longitude:</strong> <span>{station.longitude}</span>
+        <strong>Longitude</strong> <span>{station.longitude}</span>
       </li>
       <li>
-        <strong>Updated:</strong> <span>{station.lastCommunicationTime}</span>
+        <strong>Updated</strong> <span>{station.lastCommunicationTime}</span>
       </li>
-    </ul>
+    </ul>}
   </Box>
 )
 
@@ -38,7 +38,7 @@ StationPane.propTypes = {
 StationPane.defaultProps = {
   className: 'station-pane',
   height: 200,
-  station: {},
+  station: null,
   width: 400
 }
 

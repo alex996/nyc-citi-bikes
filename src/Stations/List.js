@@ -1,21 +1,17 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import debounce from 'lodash/debounce'
+
 import { FixedSizeList as List } from 'react-window'
 import { Box } from '../Utils'
 import StationRow from './Row'
 import Station from './type'
 
 const StationList = ({ className, height, onSelect, rowHeight, stations, width }) => {
-  const handleSelect = target => {
+  const onMouseOver = ({ target }) => {
     onSelect(target.dataset.id || target.closest('div').dataset.id)
   }
 
-  const handleMouseOver = debounce(handleSelect, 50)
-
-  const onMouseOver = ({ target }) => handleMouseOver(target)
-
-  const data = { stations, onMouseOver }
+  const data = { onMouseOver, stations }
 
   return (
     <Box>
