@@ -8,7 +8,7 @@ const Station = {
   totalDocks: PropTypes.number.isRequired,
   latitude: PropTypes.number.isRequired,
   longitude: PropTypes.number.isRequired,
-  lastCommunicationTime: PropTypes.string
+  lastCommunicationTime: PropTypes.string.isRequired
 }
 
 export default Station

@@ -3,7 +3,7 @@ import debounce from 'lodash/debounce'
 import { StationList, StationPane, StationSearch } from './Stations'
 import { Loader } from './Utils'
 
-const apiUrl = '/stations/stations.json'
+const apiUrl = '/api/stations/stations.json'
 
 const stationsFilter = ({ statusValue, testStation }) => statusValue === 'In Service' && !testStation
 
@@ -47,13 +47,15 @@ const App = props => {
     fetch(apiUrl)
       .then(res => {
         if (res.ok) {
-          res.json().then(({ stationBeanList }) => {
-            const stations = stationBeanList.filter(stationsFilter)
-            setAllStations(stations)
-            setStations(stations)
-            setStation(stations[0])
-            setLoading(false)
-          })
+          res.json()
+            .then(({ stationBeanList }) => {
+              const stations = stationBeanList.filter(stationsFilter)
+              setAllStations(stations)
+              setStations(stations)
+              setStation(stations[0])
+              setLoading(false)
+            })
+            .catch(onError)
         } else {
           onError(res)
         }

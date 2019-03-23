@@ -9,6 +9,7 @@
     "eject": "react-scripts eject"
   },
   "dependencies": {
+    "http-proxy-middleware": "^0.19.1",
     "prop-types": "^15.7.2",
     "react": "^16.8.5",
     "react-dom": "^16.8.5",
@@ -33,6 +34,5 @@
     "globals": [
       "fetch"
     ]
-  },
-  "proxy": "https://feeds.citibikenyc.com"
+  }
 }
