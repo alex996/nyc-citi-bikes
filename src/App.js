@@ -3,9 +3,17 @@ import debounce from 'lodash/debounce'
 import { StationList, StationPane, StationSearch } from './Stations'
 import { Loader } from './Utils'
 
+const pollInterval = 30 * 1000
+
 const apiUrl = '/api/stations/stations.json'
 
-const stationsFilter = ({ statusValue, testStation }) => statusValue === 'In Service' && !testStation
+const filterByStatus = ({ statusValue, testStation }) => statusValue === 'In Service' && !testStation
+
+const searchByQuery = (stations, query) => stations.filter(
+  station => station.stationName.toUpperCase().includes(query.toUpperCase()) // case-insensitive
+)
+
+const findById = (stations, id) => stations.find(station => station.id === +id)
 
 const App = props => {
   const [allStations, setAllStations] = useState([])
@@ -15,16 +23,14 @@ const App = props => {
   const [query, setQuery] = useState('')
 
   const onSelect = debounce(
-    id => setStation(stations.find(station => station.id === +id)), 50
+    id => setStation(findById(stations, id)), 50
   )
 
   const onSearch = query => {
     setQuery(query)
 
     const filtered = query
-      ? allStations.filter(
-        station => station.stationName.toUpperCase().includes(query.toUpperCase()) // case-insensitive
-      )
+      ? searchByQuery(allStations, query)
       : allStations
 
     setStations(filtered)
@@ -46,11 +52,11 @@ const App = props => {
   }
 
   const onFetch = data => {
-    const stations = data.stationBeanList.filter(stationsFilter)
+    const stations = data.stationBeanList.filter(filterByStatus)
 
     setAllStations(stations)
-    setStations(stations)
-    setStation(stations[0])
+    setStations(query ? searchByQuery(stations, query) : stations)
+    setStation(station ? findById(stations, station.id) : stations[0])
     setLoading(false)
   }
 
@@ -61,6 +67,11 @@ const App = props => {
   }
 
   useEffect(fetchStations, [])
+
+  useEffect(() => {
+    const id = setInterval(() => fetchStations(), pollInterval)
+    return () => clearInterval(id)
+  })
 
   if (loading) {
     return <Loader />
