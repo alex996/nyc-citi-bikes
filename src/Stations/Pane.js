@@ -3,28 +3,26 @@ import PropTypes from 'prop-types'
 import { Box } from '../Utils'
 import Station from './type'
 
+const props = {
+  stationName: 'Name',
+  availableDocks: 'Available',
+  totalDocks: 'Total',
+  latitude: 'Latitude',
+  longitude: 'Longitude',
+  lastCommunicationTime: 'Updated'
+}
+
 const StationPane = ({ className, height, station, width }) => (
   <Box style={{ height, width }}>
-    {station && <ul className={className}>
-      <li>
-        <strong>Name</strong> <span>{station.stationName}</span>
-      </li>
-      <li>
-        <strong>Available</strong> <span>{station.availableDocks}</span>
-      </li>
-      <li>
-        <strong>Total</strong> <span>{station.totalDocks}</span>
-      </li>
-      <li>
-        <strong>Latitude</strong> <span>{station.latitude}</span>
-      </li>
-      <li>
-        <strong>Longitude</strong> <span>{station.longitude}</span>
-      </li>
-      <li>
-        <strong>Updated</strong> <span>{station.lastCommunicationTime}</span>
-      </li>
-    </ul>}
+    {station && (
+      <ul className={className}>
+        {Object.entries(props).map(([prop, label]) => (
+          <li key={prop}>
+            <strong>{label}</strong> <span>{station[prop]}</span>
+          </li>
+        ))}
+      </ul>
+    )}
   </Box>
 )
 
