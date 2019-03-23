@@ -33,8 +33,8 @@ const App = props => {
 
   useEffect(() => {
     setStations(allStations)
-    setLoading(false)
     setStation(allStations[0])
+    setLoading(false)
   }, [])
 
   if (loading) {
