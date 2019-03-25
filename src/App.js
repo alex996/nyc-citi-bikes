@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import { unstable_batchedUpdates as batchedUpdates } from 'react-dom'
 import debounce from 'lodash/debounce'
 import { StationList, StationPane, StationSearch } from './Stations'
 import {
@@ -49,10 +50,12 @@ const App = props => {
   const onFetch = data => {
     const stations = data.stationBeanList.filter(filterByStatus)
 
-    setAllStations(stations)
-    setStations(query ? searchByQuery(stations, query) : stations)
-    setStation(station ? findById(stations, station.id) : stations[0])
-    setLoading(false)
+    batchedUpdates(() => {
+      setAllStations(stations)
+      setStations(query ? searchByQuery(stations, query) : stations)
+      setStation(station ? findById(stations, station.id) : stations[0])
+      setLoading(false)
+    })
   }
 
   const onError = err => {
