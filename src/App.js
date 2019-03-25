@@ -66,7 +66,7 @@ const App = props => {
   useEffect(() => {
     const id = setInterval(() => fetchStations(), pollInterval)
     return () => clearInterval(id)
-  })
+  }, [])
 
   if (loading) {
     return <Loader />
