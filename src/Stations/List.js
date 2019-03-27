@@ -8,7 +8,7 @@ import Station from './type'
 
 const StationList = ({ className, height, onSelect, rowHeight, stations, width }) => {
   const onMouseOver = ({ target }) => {
-    onSelect(target.dataset.id || target.closest('div').dataset.id)
+    onSelect(target.dataset.id)
   }
 
   const data = { onMouseOver, stations }

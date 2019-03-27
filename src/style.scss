@@ -46,12 +46,16 @@ body {
     justify-content: space-between;
     border-bottom: 1px solid $light-gray;
 
-    span:first-child {
-      padding-left: 1rem;
-    }
+    span {
+      pointer-events: none;
 
-    span:last-child {
-      padding-right: 1rem;
+      &:first-child {
+        padding-left: 1rem;
+      }
+
+      &:last-child {
+        padding-right: 1rem;
+      }
     }
   }
 }
